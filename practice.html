@@ -1,3 +1,4 @@
+ADD OR REMOVE CART BUTTONS
 <!-- <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,10 +49,7 @@
   </body>
 </html> -->
 
-
-
-
-
+CALCULATOR
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,6 +125,77 @@
 </body>
 </html> -->
 
+UPDATED CALCULATOR
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+</head>
+<body>
+
+  <p>
+    <button onclick="
+    updateCalculation(1);
+    ">1</button>
+    <button onclick="
+    updateCalculation(2);
+    ">2</button>
+    <button onclick="
+    updateCalculation(3);
+    ">3</button>
+  </p>
+  
+  <p>
+    <button onclick="
+    updateCalculation(4);
+    ">4</button>
+    <button onclick="
+    updateCalculation(5);
+    ">5</button>
+    <button onclick="
+    updateCalculation(6);
+    ">6</button>
+  </p>
+
+  <p>
+    <button onclick="
+    updateCalculation(7);
+    ">7</button>
+    <button onclick="
+    updateCalculation(8);
+    ">8</button>
+    <button onclick="
+    updateCalculation(9);
+    ">9</button>
+  </p>
+
+  <p>
+    <button onclick="
+    updateCalculation('+');
+    ">+</button>
+    <button onclick="
+    updateCalculation(0);
+    ">0</button>
+    <button onclick="
+    calculation = eval(calculation);
+    console.log(calculation);
+    ">=</button>
+  </p>
+
+  <script>
+    let calculation = '';
+    let number = '';
+    function updateCalculation(number) {
+      calculation += number;
+      console.log(calculation);
+    }
+  </script>
+</body>
+</html> -->
+
+CART QUANTITY EXERCISE
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,6 +271,147 @@
 
     <script>
       let cartQuantity = 0;
+    </script>
+  </body>
+</html> -->
+
+UPDATED CART QUANTITY EXERCISE
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolean</title>
+  </head>
+  <body>
+    <button onclick="
+      console.log(`Cart quantity: ${cartQuantity}`);">
+      Show Quantity
+    </button>
+
+    <button onclick="
+      updateCartQuantity(1, 10);">
+       Add to Cart
+    </button>
+
+    <button onclick="
+    updateCartQuantity(2, 9);">
+    +2
+    </button>
+
+    <button onclick="
+    updateCartQuantity(3, 8);">
+    +3
+    </button>
+
+    <button onclick="
+    updateCartQuantityMinus(3, 3);">
+    -3
+    </button>
+
+    <button onclick="
+      updateCartQuantityMinus(2, 2);">
+        -2
+    </button>
+
+    <button onclick="
+      cartQuantity = 0;
+      alert('Cart was reset')
+      console.log(`Cart quantity: ${cartQuantity}`);">
+        Reset Cart
+    </button>
+
+    <script>
+      let cartQuantity = 0;
+      let maxQuantity = '';
+      let minQuantity = '';
+
+      function updateCartQuantity(x, maxQuantity) {
+        if (cartQuantity < maxQuantity) {
+          cartQuantity += x;
+          console.log(`Cart quantity: ${cartQuantity}`);
+          
+        } else {
+          alert('The cart is full');
+        }
+      }
+      function updateCartQuantityMinus(x, minQuantity) {
+        if (cartQuantity >= minQuantity) {
+          cartQuantity -= x;
+          console.log(`Cart quantity: ${cartQuantity}`);
+        } else {
+          alert('Not enough items in the cart');
+        }
+      }
+    </script>
+  </body>
+</html> -->
+
+TEMPERATURE CONVERTER
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let celcius = '';
+      let Fahrenheit = '';
+
+      function convertTemperature(degrees, unit = ('C' || 'F')) {
+        let result = '';
+        if (unit === 'C') {
+          result = (((degrees * (9/5)) + 32));
+          console.log(`${result}F`);
+        } else if (unit === 'F') {
+          result = ((degrees - 32) * (5/9));
+          console.log(`${result}C`);
+        } else if (unit !== 'C' && unit !== 'F') {
+          console.log('Incorrect unit');
+        }
+      }
+      convertTemperature(25, 'C');
+    </script>
+  </body>
+</html> -->
+
+LENGTH CONVERTER
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length converter</title>
+  </head>
+  <body>
+    <script>
+      let result = '';
+      function convertLength(length, from = ('miles' || 'km' || 'ft'), to = ('miles' || 'km' || 'ft')) {
+        if (from === 'km', to === 'miles') {
+          result = length / 1.6;
+          console.log(`${result} ${to}`);
+        } else if (from === 'miles' && to === 'km') {
+          result = length * 1.6;
+          console.log(`${result} ${to}`);
+        } else if (from === 'miles' && to === 'ft') {
+          result = length * 5280;
+          console.log(`${result} ${to}`);
+        } else if (from === 'ft' && to === 'miles') {
+          result = length / 5280;
+          console.log(`${result} ${to}`);
+        } else if (from === 'km' && to === 'ft') {
+          result = (length * 3281);
+          console.log(`${result} ${to}`);
+        } else if (from === 'ft' && to === 'km') {
+          result = length / 3281;
+          console.log(`${result} ${to}`);
+        } else if (from !== ('miles' || 'km' || 'ft'), to !== ('miles' || 'km' || 'ft')) {
+          console.log(`Invalid unit: ${(from && to)}`);
+        }
+      }
+      convertLength(5,'km','ft');
     </script>
   </body>
 </html> -->
