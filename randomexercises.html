@@ -32,7 +32,8 @@ Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`);
       const randomNumber = Math.random();
       let computerMove = '';
       let result = '';
-      const score = JSON.parse(localStorage.getItem('score'));
+      const score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
+
       
       function playerChoice(choice) {
         forComputer();
