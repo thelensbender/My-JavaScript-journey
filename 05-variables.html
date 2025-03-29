@@ -14,99 +14,57 @@
         font-size: 30px;
         font-weight: bold;
       }
+      .move-icon {
+        height: 50px;
+      }
+      .move-button {
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 50px;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .result {
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 50;
+      }
+      .score {
+        margin-top: 60px;
+      }
+      .reset-score-button {
+        background-color: white;
+        border: none;
+        font-size: 15px;
+        padding: 8px 15px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <p class="game-title">Rock, Paper, Scissors game</p>
     <button onclick="
-      playerChoice('Rock')">
-        Rock
+      playerChoice('Rock')" class="move-button">
+        <img src="image/rock-emoji.png" class="move-icon">
       </button>
     <button onclick="
-      playerChoice('Paper')">
-      Paper
+      playerChoice('Paper')" class="move-button">
+      <img src="image/paper-emoji.png" class="move-icon">
     </button>
     <button onclick="
-      playerChoice('Scissors')">
-      Scissors
+      playerChoice('Scissors')" class="move-button">
+      <img src="image/scissors-emoji.png" class="move-icon">
     </button>
-    <p class="js-result"></p>
-    <p class="js-result-comparison"></p>
-    <p class="js-score-button">Score</p>
+    <p class="js-result result"></p>
+    <p class="js-result-comparison">
+    </p>
+    <p class="js-score-button score">Score</p>
     <button onclick="
-      score.wins = 0;
-      score.losses = 0;
-      score.ties = 0;
-      localStorage.removeItem('score');
-      updateScoreElement()">
+    reset();" class="reset-score-button">
         Reset Score
     </button>
-    <script>
-      const randomNumber = Math.random();
-      let computerMove = '';
-      let result = '';
-      const score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
-      function updateScoreElement() {
-        document.querySelector('.js-score-button').innerHTML = `Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`;
-        document.querySelector('.js-result').innerHTML = 'Result';
-        document.querySelector('.js-result-comparison').innerHTML = 'Result comparison';
-      }
-      updateScoreElement();
-
-      
-      function playerChoice(choice) {
-        forComputer();
-        if (choice === 'Rock') {
-          if (computerMove === 'Rock') {
-          result = 'Tie!';
-          } else if (computerMove === 'Paper') {
-            result = 'You lose!';
-          } else if (computerMove === 'Scissors') {
-            result = 'You win!';
-          }
-        } else if (choice === 'Paper') {
-          if (computerMove === 'Rock') {
-          result = 'You win!';
-          } else if (computerMove === 'Paper') {
-            result = 'Tie!';
-          } else if (computerMove === 'Scissors') {
-            result = 'You lose!';
-          }
-        } else if (choice === 'Scissors') {
-          if (computerMove === 'Rock') {
-          result = 'You lose!';
-          } else if (computerMove === 'Paper') {
-            result = 'You win!';
-          } else if (computerMove === 'Scissors') {
-            result = 'Tie!';
-          }
-        }
-        
-          if (result === 'You win!') {
-            score.wins += 1;
-          } else if (result === 'You lose!') {
-            score.losses += 1;
-          } else if (result === 'Tie!') {
-            score.ties += 1;
-          }
-
-          localStorage.setItem('score', JSON.stringify(score));
-        updateScoreElement();
-        document.querySelector('.js-result').innerHTML = `${result}`;
-        document.querySelector('.js-result-comparison').innerHTML = `You ${choice} - ${computerMove} Computer`;
-      }
-      
-      function forComputer() {
-        const randomNumber = Math.random();
-        if (randomNumber >= 0 && randomNumber < (1/3)) {
-        computerMove = 'Rock';
-        } else if (randomNumber >= (1/3) && randomNumber < (2/3)) {
-          computerMove = 'Paper';
-        } else if (randomNumber >= (2/3) && randomNumber < 1) {
-          computerMove = 'Scissors';
-        }
-      }
-      
-    </script>
+    <script src="scripts/rock-paper-scissors.js"></script>
   </body>
 </html>
