@@ -19,13 +19,15 @@
       playerChoice('Scissors')">
       Scissors
     </button>
+    <p class="js-result">Result</p>
+    <p class="js-result-comparison">Result comparison</p>
+    <p class="js-score-button">Score</p>
     <button onclick="
       score.wins = 0;
       score.losses = 0;
       score.ties = 0;
-      alert(`Score reset!
-Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`);
-      localStorage.removeItem('score');">
+      localStorage.removeItem('score');
+      updateScoreElement()">
         Reset Score
     </button>
     <script>
@@ -33,6 +35,12 @@ Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`);
       let computerMove = '';
       let result = '';
       const score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
+      function updateScoreElement() {
+        document.querySelector('.js-score-button').innerHTML = `Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`;
+        document.querySelector('.js-result').innerHTML = 'Result';
+        document.querySelector('.js-result-comparison').innerHTML = 'Result comparison';
+      }
+      updateScoreElement();
 
       
       function playerChoice(choice) {
@@ -72,9 +80,11 @@ Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`);
           }
 
           localStorage.setItem('score', JSON.stringify(score));
-        alert(`You chose ${choice}, Computer chose ${computerMove}, ${result}
-Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`);
+        updateScoreElement();
+        document.querySelector('.js-result').innerHTML = `${result}`;
+        document.querySelector('.js-result-comparison').innerHTML = `You ${choice} - ${computerMove} Computer`;
       }
+      
       function forComputer() {
         const randomNumber = Math.random();
         if (randomNumber >= 0 && randomNumber < (1/3)) {
@@ -85,7 +95,7 @@ Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`);
           computerMove = 'Scissors';
         }
       }
-    
+      
     </script>
   </body>
 </html>

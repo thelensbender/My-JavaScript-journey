@@ -58,69 +58,66 @@ CALCULATOR
   <title>Calculator</title>
 </head>
 <body>
-
+  <p class="js-display"></p>
   <p>
     <button onclick="
-    calculation += '1';
-    console.log(`${calculation}`);
+    updateCalculation(1);
     ">1</button>
     <button onclick="
-    calculation += '2';
-    console.log(`${calculation}`);
+    updateCalculation(2);
     ">2</button>
     <button onclick="
-    calculation += '3';
-    console.log(`${calculation}`);
+    updateCalculation(3);
     ">3</button>
   </p>
   
   <p>
     <button onclick="
-    calculation += '4';
-    console.log(`${calculation}`);
+    updateCalculation(4);
     ">4</button>
     <button onclick="
-    calculation += '5';
-    console.log(`${calculation}`);
+    updateCalculation(5);
     ">5</button>
     <button onclick="
-    calculation += '6';
-    console.log(`${calculation}`);
+    updateCalculation(6);
     ">6</button>
   </p>
 
   <p>
     <button onclick="
-    calculation += '7';
-    console.log(`${calculation}`);
+    updateCalculation(7);
     ">7</button>
     <button onclick="
-    calculation += '8';
-    console.log(`${calculation}`);
+    updateCalculation(8);
     ">8</button>
     <button onclick="
-    calculation += '9';
-    console.log(`${calculation}`);
+    updateCalculation(9);
     ">9</button>
   </p>
 
   <p>
     <button onclick="
-    calculation += '+'
-    console.log(calculation);
+    updateCalculation(' + ');
     ">+</button>
     <button onclick="
-    calculation += '0';
-    console.log(`${calculation}`);
+    updateCalculation(0);
     ">0</button>
     <button onclick="
     calculation = eval(calculation);
-    console.log(calculation);
+    displayElement.innerHTML=  calculation;
     ">=</button>
   </p>
 
   <script>
     let calculation = '';
+    let number = '';
+    calculation = JSON.parse(localStorage.getItem('calculation'));
+    let displayElement = document.querySelector('.js-display');
+    function updateCalculation(number) {
+      calculation += number;
+      displayElement.innerHTML=  calculation;
+      localStorage.setItem('calculation', JSON.stringify(calculation));
+    }
   </script>
 </body>
 </html> -->
@@ -281,7 +278,7 @@ UPDATED CART QUANTITY EXERCISE
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boolean</title>
+    <title>Cart Quantity</title>
   </head>
   <body>
     <button onclick="
@@ -412,6 +409,82 @@ LENGTH CONVERTER
         }
       }
       convertLength(5,'km','ft');
+    </script>
+  </body>
+</html> -->
+
+FLIP THE COIN (HEAD OR TAIL)
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head or Tail </title>
+  </head>
+  <body>
+    <button onclick="
+      guesses('head');">
+      Head
+    </button>
+    <button onclick="
+      guesses('tail');">
+      Tail
+    </button>
+    <button onclick="
+    resetScore()">
+      Reset score
+    </button>
+    <script>
+      let randomNumber = Math.random();
+      let coin = '';
+      let guess = '';
+      let score = JSON.parse(localStorage.getItem('score')) || {
+        win: 0,
+        lose: 0
+      };
+      let result = '';
+      function cointossed() {
+        if (randomNumber >= 0 && randomNumber < (1/2)) {
+          coin = 'head';
+        } else if (randomNumber >= (1/2) && randomNumber <= 1) {
+          coin = 'tail';
+        }
+      }
+      function guesses(guess) {
+        randomNumber = Math.random();
+        cointossed();
+        if (guess === 'head') {
+          if (coin === 'head') {
+            result = 'You win!';
+          } else if (coin === 'tail') {
+            result = 'You lose!'
+          }
+        } else if (guess === 'tail') {
+          if (coin === 'head') {
+            result = 'You lose!';
+          } else if (coin === 'tail') {
+            result = 'You win!';
+          }
+        }
+
+        if (result === 'You win!') {
+          score.win += 1;
+        } else if (result === 'You lose!') {
+          score.lose += 1;
+        };
+        alert(`${result}
+Wins: ${score.win}, losses: ${score.lose}`);
+        localStorage.setItem('score', JSON.stringify(score));
+      }
+      function resetScore() {
+        score = {
+          win: 0,
+          lose: 0
+        }
+        alert(`Reset successful!
+Wins: ${score.win}, losses: ${score.lose}`);
+        localStorage.setItem('score', JSON.stringify(score));
+      }
     </script>
   </body>
 </html> -->
