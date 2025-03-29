@@ -50,8 +50,8 @@ function playerChoice(choice) {
   document.querySelector('.js-result').innerHTML = `${result}`;
   document.querySelector('.js-result-comparison').innerHTML = `
 You
-<img src="/image/${choice}-emoji.png" class="move-icon">
-<img src="/image/${computerMove}-emoji.png" class="move-icon">
+<img src="image/${choice}-emoji.png" class="move-icon">
+<img src="image/${computerMove}-emoji.png" class="move-icon">
 Computer`;
 }
 
