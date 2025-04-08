@@ -489,7 +489,7 @@ Wins: ${score.win}, losses: ${score.lose}`);
   </body>
 </html> -->
 
-TOGGLE BUTTONS
+TOGGLE BUTTONS (MULTIPLE-SELECTION)
 <!-- <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -539,28 +539,31 @@ TOGGLE BUTTONS
         '.button-2': 'Off',
         '.button-3': 'Off'
       };
-
-      if (buttonSwitch['.button-1'] === 'On') {
+      memory();
+      function memory() {
+        if (buttonSwitch['.button-1'] === 'On') {
         document.querySelector('.button-1').classList.add('js-button-on');
-      } else {
-        document.querySelector('.button-1').classList.add('js-button-off');
-      }
+        } else {
+          document.querySelector('.button-1').classList.add('js-button-off');
+        }
 
-      if (buttonSwitch['.button-2'] === 'On') {
-        document.querySelector('.button-2').classList.add('js-button-on');
-      } else {
-        document.querySelector('.button-2').classList.add('js-button-off');
-      }
+        if (buttonSwitch['.button-2'] === 'On') {
+          document.querySelector('.button-2').classList.add('js-button-on');
+        } else {
+          document.querySelector('.button-2').classList.add('js-button-off');
+        }
 
-      if (buttonSwitch['.button-3'] === 'On') {
-        document.querySelector('.button-3').classList.add('js-button-on');
-      } else {
-        document.querySelector('.button-3').classList.add('js-button-off');
+        if (buttonSwitch['.button-3'] === 'On') {
+          document.querySelector('.button-3').classList.add('js-button-on');
+        } else {
+          document.querySelector('.button-3').classList.add('js-button-off');
+        }
       }
+      
       
       function toggle(eachButton) {
         let buttons = document.querySelector(`${eachButton}`);
-        let buttonSwitch = JSON.parse(localStorage.getItem('switch')) ||  {
+        buttonSwitch = JSON.parse(localStorage.getItem('switch')) ||  {
           '.button-1': 'Off',
           '.button-2': 'Off',
           '.button-3': 'Off'

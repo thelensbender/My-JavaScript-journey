@@ -82,6 +82,19 @@
           buttonSwitch[eachButton] = 'Off';
           console.log(buttonSwitch);
         } else if (buttons.classList.contains('js-button-off') === true) {
+          document.querySelector('.button-1').classList.add('js-button-off');
+          document.querySelector('.button-1').classList.remove('js-button-on');
+          buttonSwitch['.button-1'] = 'Off';
+
+          document.querySelector('.button-2').classList.add('js-button-off');
+          document.querySelector('.button-2').classList.remove('js-button-on');
+          buttonSwitch['.button-2'] = 'Off';
+
+          document.querySelector('.button-3').classList.add('js-button-off');
+          document.querySelector('.button-3').classList.remove('js-button-on');
+          buttonSwitch['.button-3'] = 'Off';
+
+
           buttons.classList.remove('js-button-off');
           buttons.classList.add('js-button-on');
           buttonSwitch[eachButton] = 'On';
