@@ -5,103 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise</title>
     <style>
-      .js-button-off {
-        background-color: rgb(219, 219, 219);
-        border: none;
-        width: 100px;
-        height: 50px;
-        border-radius: 10px;
-        color: black;
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
-      } 
-      .js-button-on {
+      body {
         background-color: black;
+      }
+      .js-number,
+      .js-right {
         border: none;
-        width: 100px;
-        height: 50px;
-        border-radius: 10px;
+        padding: 20px 25px;
+        font-size: 17px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-bottom: 15px;
+        margin-right: 10px;
+        border-radius: 30px;
         color: white;
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
+        background-color: rgb(66, 67, 68);
+      }
+      .js-right{
+        background-color: orange;
+      }
+      .js-result-display {
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
       }
     </style>
   </head>
   <body>
-    <button class="button-1" onclick="
-      toggle('.button-1')">Gaming
-    </button>
-    <button class="button-2" onclick="
-      toggle('.button-2')">Music
-    </button>
-    <button class="button-3" onclick="
-      toggle('.button-3')">Tech
-    </button>
+    <p class="js-result-display"><br></p>
+    <div>
+      <button class="js-number" onclick="press('1')">1</button>
+      <button class="js-number" onclick="press('2')">2</button>
+      <button class="js-number" onclick="press('3')">3</button>
+      <button class="js-right" onclick="press(' + ')">+</button>
+    </div>
+    <div>
+      <button class="js-number" onclick="press('4')">4</button>
+      <button class="js-number" onclick="press('5')">5</button>
+      <button class="js-number" onclick="press('6')">6</button>
+      <button class="js-right" onclick="press(' - ')">-</button>
+    </div>
+    <div>
+      <button class="js-number" onclick="press('7')">7</button>
+      <button class="js-number" onclick="press('8')">8</button>
+      <button class="js-number" onclick="press('9')">9</button>
+      <button class="js-right" onclick="press(' * ')">*</button>
+    </div>
+    <div>
+      <button class="js-number" onclick="press('0');">0</button>
+      <button class="js-number" onclick="press('.');">.</button>
+      <button class="js-number" onclick="calculate();">=</button>
+      <button class="js-right" onclick="press(' / ')">/</button>
+    </div>
+    <div>
+      <button class="js-number" onclick="clearDisplay();">Clear</button>
+    </div>
+  <script>
+    let calculation = '';
+    let displayElement = document.querySelector('.js-result-display');
+    
+    function press(NumberSign) {
+      calculation += NumberSign;
+      displayElement.innerHTML = `${calculation}`;
+    }
 
+    function calculate() {
+      calculation = eval(calculation);
+      displayElement.innerHTML = `${calculation}`;
+    }
 
-    <script>
-      let buttonSwitch = JSON.parse(localStorage.getItem('switch')) || {
-        '.button-1': 'Off',
-        '.button-2': 'Off',
-        '.button-3': 'Off'
-      };
-      memory();
-      function memory() {
-        if (buttonSwitch['.button-1'] === 'On') {
-        document.querySelector('.button-1').classList.add('js-button-on');
-        } else {
-          document.querySelector('.button-1').classList.add('js-button-off');
-        }
-
-        if (buttonSwitch['.button-2'] === 'On') {
-          document.querySelector('.button-2').classList.add('js-button-on');
-        } else {
-          document.querySelector('.button-2').classList.add('js-button-off');
-        }
-
-        if (buttonSwitch['.button-3'] === 'On') {
-          document.querySelector('.button-3').classList.add('js-button-on');
-        } else {
-          document.querySelector('.button-3').classList.add('js-button-off');
-        }
+    function enterKey(event) {
+      if (event.key === 'Enter') {
+        calculate();
       }
-      
-      
-      function toggle(eachButton) {
-        let buttons = document.querySelector(`${eachButton}`);
-        buttonSwitch = JSON.parse(localStorage.getItem('switch')) ||  {
-          '.button-1': 'Off',
-          '.button-2': 'Off',
-          '.button-3': 'Off'
-        };
-        if (buttons.classList.contains('js-button-on') === true) {
-          buttons.classList.remove('js-button-on');
-          buttons.classList.add('js-button-off');
-          buttonSwitch[eachButton] = 'Off';
-          console.log(buttonSwitch);
-        } else if (buttons.classList.contains('js-button-off') === true) {
-          document.querySelector('.button-1').classList.add('js-button-off');
-          document.querySelector('.button-1').classList.remove('js-button-on');
-          buttonSwitch['.button-1'] = 'Off';
+    }
 
-          document.querySelector('.button-2').classList.add('js-button-off');
-          document.querySelector('.button-2').classList.remove('js-button-on');
-          buttonSwitch['.button-2'] = 'Off';
-
-          document.querySelector('.button-3').classList.add('js-button-off');
-          document.querySelector('.button-3').classList.remove('js-button-on');
-          buttonSwitch['.button-3'] = 'Off';
-
-
-          buttons.classList.remove('js-button-off');
-          buttons.classList.add('js-button-on');
-          buttonSwitch[eachButton] = 'On';
-          console.log(buttonSwitch);
-        }
-        localStorage.setItem('switch', JSON.stringify(buttonSwitch));
-      }
-    </script>
+    function clearDisplay() {
+      calculation = '';
+      displayElement.innerHTML = `<br>`;
+    }
+  </script>
   </body>
 </html>
