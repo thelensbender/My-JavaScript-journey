@@ -3,21 +3,40 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice</title>
+    <title>App</title>
   </head>
   <body>
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Remove</button>
     <script>
-      for (let i = 1; i <= 20; i++) {
-        if ((i % 3 === 0) && (i % 5 === 0)) {
-          console.log('FizzBuzz');
-          continue;
-        } else if (i % 3 === 0) {
-          console.log('Fizz');
-          continue;
-        } else if (i % 5 === 0) {
-          console.log('Buzz');
-          continue;
-        } else console.log(i);
+      let noti = false;
+      let intervalId;
+      let messageNumber = 0;
+
+      setInterval(function() {
+        if (messageNumber <= 0) {
+          messageNumber = 0;
+          document.title = 'App';
+        } else {
+          if (!noti) {
+            if (messageNumber === 1) {
+              document.title = `(${messageNumber}) New message`;
+          } else {
+            document.title = `(${messageNumber}) New messages`;
+          }
+            noti = true;
+          } else {
+            document.title = 'App';
+            noti = false;
+          }
+        }
+        
+      }, 1000);
+      function add() {
+        messageNumber++;
+      }
+      function subtract() {
+        messageNumber--;
       }
     </script>
   </body>
