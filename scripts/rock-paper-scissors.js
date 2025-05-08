@@ -1,6 +1,5 @@
 let computerMove;
 let result;
-let choice;
 const score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
 function updateScoreElement() {
   document.querySelector('.js-score-button').innerHTML = `Wins: ${score.wins}, losses: ${score.losses}, Ties: ${score.ties}`;
@@ -15,7 +14,7 @@ document.querySelector('.js-paper-button').addEventListener('click', () => {
   playerChoice('Paper')
 })
 
-document.querySelector('.js-Scissors-button').addEventListener('click', () => {
+document.querySelector('.js-scissors-button').addEventListener('click', () => {
   playerChoice('Scissors')
 })
 
@@ -69,13 +68,14 @@ You
 Computer`;
 }
 
+
 let intervalId;
 let isAutoPlay = false;
 function autoPlay() {
   if (!isAutoPlay) {
     intervalId = setInterval(() => {
       let choice;
-      randomNumber = Math.random();
+      let randomNumber = Math.random();
       if (randomNumber >= 0 && randomNumber < (1/3)) {
         choice = 'Rock';
         } else if (randomNumber >= (1/3) && randomNumber < (2/3)) {
@@ -84,7 +84,7 @@ function autoPlay() {
           choice = 'Scissors';
         }
     playerChoice(choice);
-    }, 200);
+    }, 500);
     isAutoPlay = true;
     document.querySelector(".auto-play-button").innerHTML = 'Stop Auto Play';
   } else {
